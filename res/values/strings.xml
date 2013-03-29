@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Crossword To Go</string>
+    <string name="introduction">Thanks for downloading Crossword To Go!</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_crossword">New Crossword</string>
+    <string name="open_crossword">Open Crossword</string>
+    <string name="app_options">Options</string>
+    <string name="dialog_message_new_crossword">Choose one</string>
+    <string name="dialog_button_choose_template">Choose from template</string>
+    <string name="dialog_button_create_from_scratch">Create from scratch</string>
+    <string name="dialog_continue">Continue</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_dimensions_rows">Rows</string>
+    <string name="dialog_dimensions_cols">Columns</string>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+</resources>

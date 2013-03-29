@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+	android:weightSum="100"
+ ><com.example.crosswordtogo.ZoomView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/zoomview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="42"
+        android:gravity="center" >
+
+        <GridView
+            android:id="@+id/block_chooser_crossword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#333333"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp" >
+        </GridView>
+    </com.example.crosswordtogo.ZoomView>
+
+    <LinearLayout
+        
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="58"
+        android:background="@drawable/ui_theme" >"
+    </LinearLayout>
+
+</LinearLayout>
