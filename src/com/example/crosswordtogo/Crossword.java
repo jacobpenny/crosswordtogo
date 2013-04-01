@@ -1,5 +1,6 @@
 package com.example.crosswordtogo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,16 @@ public class Crossword {
 	
 	public int getNumCols() {
 		return numCols_;
+	}
+	
+	public List<Integer> getBlockList() {
+		List<Integer> result = new ArrayList<Integer>();
+		for (int i = 0; i < (numRows_ * numCols_); i++) {
+			if (getSquareAt(i).isBlock()) {
+				result.add(i);
+			}
+		}
+		return result;
 	}
 	
 	// dont use?
