@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#ffffff"
-     >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/square"
+    android:layout_width="0dp"
+    android:layout_height="20dp"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="8sp"
+        android:text=""
+        android:paddingBottom="0dp"
+        android:focusable="false" />
     
     <TextView
         android:id="@+id/letter"
-        android:layout_width="0dp"
+        android:paddingTop="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textSize="20dp" />
+        android:layout_gravity="center_horizontal"
+        android:textColor="#111111"
+        android:textSize="20sp"
+        android:text=""
+        android:focusable="false" />
 
 </LinearLayout>

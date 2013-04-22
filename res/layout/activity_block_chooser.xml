@@ -4,32 +4,31 @@
     android:orientation="vertical"
     android:weightSum="100" >
 
-    <com.example.crosswordtogo.ZoomView
+    <com.example.crosswordtogo.utils.ZoomView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/zoomview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
-        android:layout_weight="35"
-        android:gravity="center" >
+        android:background="@drawable/paper4"
+        android:layout_weight="35" >
 
         <GridView
             android:id="@+id/block_chooser_crossword"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
+            android:layout_height="wrap_content"
+			android:layout_margin="2dp"
+			android:padding="1dp"
             
             android:background="#222222"
             android:columnWidth="1dp"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:horizontalSpacing="1dp"
             android:stretchMode="columnWidth"
             android:verticalSpacing="1dp"
              >
         </GridView>
-    </com.example.crosswordtogo.ZoomView>
+    </com.example.crosswordtogo.utils.ZoomView>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100" >
+
+    <com.example.crosswordtogo.utils.ZoomView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/zoomview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/paper4"
+        android:layout_weight="35" >
+
+        <GridView
+            android:id="@+id/block_chooser_crossword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+			android:layout_margin="2dp"
+			android:padding="1dp"
+            
+            android:background="#222222"
+            android:columnWidth="1dp"
+            android:layout_gravity="center"
+            android:horizontalSpacing="1dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1dp"
+             >
+        </GridView>
+    </com.example.crosswordtogo.utils.ZoomView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="65"
+        android:orientation="vertical"
+        android:background="@drawable/ui_theme" >
+
+        <EditText
+            android:id="@+id/edit_answer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="26dp"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:inputType="text"
+             />
+
+        <Spinner
+            android:id="@+id/number_spinner"
+            android:layout_width="96dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_answer" />
+
+        <Spinner
+            android:id="@+id/across_down_spinner"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_answer"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/number_spinner" />
+
+        <Button
+            android:id="@+id/answer_button"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/edit_answer"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/across_down_spinner"
+            android:text="Write" />
+"
+    </RelativeLayout>
+
+</LinearLayout>

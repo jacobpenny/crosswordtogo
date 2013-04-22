@@ -17,5 +17,10 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    
+    <string-array name="across_down_array">
+        <item>Across</item>
+        <item>Down</item>
+    </string-array>
 
 </resources>
