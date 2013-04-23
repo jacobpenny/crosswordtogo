@@ -15,7 +15,7 @@
         android:textSize="8sp"
         android:textColor="#111111"
         android:text=""
-        android:paddingLeft=""
+        android:paddingLeft="0dp"
         android:paddingBottom="0dp"
         android:focusable="false" />
     

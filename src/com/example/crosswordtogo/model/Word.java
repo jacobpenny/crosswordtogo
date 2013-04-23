@@ -11,9 +11,7 @@ public class Word {
 	List<Square> squares_;
 	private Orientation orientation_;
 	
-	
 	public enum Orientation { ACROSS, DOWN }
-	
 		
 	public Word() {
 		squares_ = new ArrayList<Square>();

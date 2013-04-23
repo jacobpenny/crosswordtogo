@@ -6,64 +6,54 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Crossword {
+public class CopyOfCrossword {
 
 	String name_;
 	private Square[] squares_;
 	private int numRows_;
 	private int numCols_;
+	Map<Integer, Word> acrossWords_;
+	Map<Integer, Word> downWords_;
 	boolean blocksLocked_;
 	private int maxWordNumber_;
 	
 	// test imp
 	Map<Integer, String> wordNumToUserTextAcross_;
 	Map<Integer, String> wordNumToUserTextDown_;
-	Map<Integer, List<Integer>> wordNumToSquareListAcross_; 
-	Map<Integer, List<Integer>> wordNumToSquareListDown_; 
+	Map<Integer, List<Integer>> wordNumToBlockListAcross_; 
+	Map<Integer, List<Integer>> wordNumToBlockListDown_; 
 	
-	private Crossword(int numRows, int numCols) {
+	public void applyStringToAcrossWord2(int number, String s) throws Exception {
+		Word selectedWord = acrossWords_.get(number);
+		selectedWord.setText(s);
+	}
+
+	public void applyStringToDownWord2(int number, String s) throws Exception {
+		Word selectedWord = downWords_.get(number);
+		selectedWord.setText(s);
+	}
+	
+	
+
+	private CopyOfCrossword(int numRows, int numCols) {
 		numRows_ = numRows;
 		numCols_ = numCols;
 		squares_ = new Square[numRows_ * numCols_];
 		for (int i = 0; i < squares_.length; ++i) {
 			squares_[i] = new Square();
 		}
-		wordNumToUserTextAcross_ = new HashMap<Integer, String>();
-		wordNumToUserTextDown_ = new HashMap<Integer, String>();
-		wordNumToSquareListAcross_ = new HashMap<Integer, List<Integer>>();
-		wordNumToSquareListDown_ = new HashMap<Integer, List<Integer>>();
-		
+		acrossWords_ = new HashMap<Integer, Word>();
+		downWords_ = new HashMap<Integer, Word>();
 	}
 
-	public static Crossword createBlank(int numRows, int numCols) {
-		Crossword crossword = new Crossword(numRows, numCols);
+	public static CopyOfCrossword createBlank(int numRows, int numCols) {
+		CopyOfCrossword crossword = new CopyOfCrossword(numRows, numCols);
 		crossword.blocksLocked_ = false;
 		return crossword;
 	}
 
-	public void applyStringToAcrossWord(int number, String s) throws Exception {
-		// Confirm that string is correct length
-		if (wordNumToSquareListAcross_.get(number).size() != s.length()) { 
-			throw new Exception("wrong length"); 
-		}
-		
-		wordNumToUserTextAcross_.put(number, s);
-		
-		// Update the squares with new letters
-		int counter = 0;
-		for (Integer index : wordNumToSquareListAcross_.get(number)) {
-			getSquareAt(index).setLetter(s.charAt(counter));
-			counter++;
-		}
-	}
-
-	public void applyStringToDownWord(int number, String s) throws Exception {
-		Word selectedWord = downWords_.get(number);
-		selectedWord.setText(s);
-	}
-	
-	public static Crossword createCrossword(String name, int numRows, int numCols, List<Integer> blockIndices, Map<Integer, String> acrossWords, Map<Integer, String> downWords) {
-		Crossword crossword = new Crossword(numRows, numCols);
+	public static CopyOfCrossword createCrossword(String name, int numRows, int numCols, List<Integer> blockIndices, Map<Integer, String> acrossWords, Map<Integer, String> downWords) {
+		CopyOfCrossword crossword = new CopyOfCrossword(numRows, numCols);
 		crossword.blocksLocked_ = true;
 		crossword.setListOfSquaresToBlocks(blockIndices);
 		crossword.generateWords();
@@ -89,10 +79,10 @@ public class Crossword {
 	
 	public int getMaxWordNumber() {
 		return maxWordNumber_;
+	
 	}
 	
 	public List<Integer> getBlockList() {
-		// TODO cache this
 		List<Integer> result = new ArrayList<Integer>();
 		for (int i = 0; i < (numRows_ * numCols_); i++) {
 			if (getSquareAt(i).isBlock()) {
@@ -119,7 +109,15 @@ public class Crossword {
 		}
 	}
 
+	public void applyStringToAcrossWord(int number, String s) throws Exception {
+		Word selectedWord = acrossWords_.get(number);
+		selectedWord.setText(s);
+	}
 
+	public void applyStringToDownWord(int number, String s) throws Exception {
+		Word selectedWord = downWords_.get(number);
+		selectedWord.setText(s);
+	}
 
 	public Square getSquareAt(int index) {
 		return squares_[index];
@@ -133,7 +131,7 @@ public class Crossword {
 		return squares_[index];
 	}
 
-	public void generateSquareLists() {
+	public void generateWords() {
 		assert blocksLocked_;
 		int counter = 1;
 		boolean assignedNewNumber;
@@ -154,26 +152,18 @@ public class Crossword {
 				if (prevAcrossSquare == null || prevAcrossSquare.isBlock()) {
 					// There is no blank square to the left of this therefore it
 					// is the beginning of a new across word
-					List<Integer> squareList = new ArrayList<Integer>();
-					int currentSquareIndex = rowIndex * numCols_ + colIndex;
-					squareList.add(currentSquareIndex);
-					wordNumToSquareListAcross_.put(counter, squareList);
 					currentSquare.setNumber(counter);
-					assignedNewNumber = true;				
+					assignedNewNumber = true;	
+					Word currentWord = new Word();
+					currentWord.addSquare(currentSquare);
+					currentSquare.setAcrossWord(currentWord);
+					acrossWords_.put(counter, currentWord);			
 				} else {
 					// There exists a blank square to the left of the current
 					// square. They both belong to the same across word.
-					int currentSquareIndex = rowIndex * numCols_ + colIndex;
-					int prevSquareIndex = currentSquareIndex - 1;
-					
-					// Iterate over wordNumToSquareListAcross_ to find the word number of prev square
-					for (Map.Entry<Integer, List<Integer>> entry : wordNumToSquareListAcross_.entrySet()) {
-					    for (Integer index: entry.getValue()) {
-					    	if (index == prevSquareIndex) {
-					    		entry.getValue().add(currentSquareIndex);
-					    	}
-					    }
-					}	
+					Word commonAcrossWord = prevAcrossSquare.getAcrossWord();
+					commonAcrossWord.addSquare(currentSquare);
+					currentSquare.setAcrossWord(commonAcrossWord);		
 				}
 
 				// Find the down word that this square belongs to (or create a
@@ -182,26 +172,18 @@ public class Crossword {
 				if (prevDownSquare == null || prevDownSquare.isBlock()) {
 					// There is no blank square above the current square
 					// therefore it is the beginning of a new down word.
-					List<Integer> squareList = new ArrayList<Integer>();
-					int currentSquareIndex = rowIndex * numCols_ + colIndex;
-					squareList.add(currentSquareIndex);
-					wordNumToSquareListDown_.put(counter, squareList);
 					currentSquare.setNumber(counter);
-					assignedNewNumber = true;		
+					assignedNewNumber = true;
+					Word currentWord = new Word();
+					currentWord.addSquare(currentSquare);
+					currentSquare.setDownWord(currentWord);
+					downWords_.put(counter, currentWord);
 				} else {
 					// There exists a blank square above of the current square.
 					// They both belong to the same down word.
-					int currentSquareIndex = rowIndex * numCols_ + colIndex;
-					int prevSquareIndex = currentSquareIndex - 1;
-					
-					// Iterate over wordNumToSquareListAcross_ to find the word number of prev square
-					for (Map.Entry<Integer, List<Integer>> entry : wordNumToSquareListDown_.entrySet()) {
-					    for (Integer index: entry.getValue()) {
-					    	if (index == prevSquareIndex) {
-					    		entry.getValue().add(currentSquareIndex);
-					    	}
-					    }
-					}
+					Word commonDownWord = prevDownSquare.getDownWord();
+					commonDownWord.addSquare(currentSquare);
+					currentSquare.setDownWord(commonDownWord);	
 				}
 
 				if (assignedNewNumber) {
