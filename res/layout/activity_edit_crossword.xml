@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:weightSum="100" >
 
-    <com.example.crosswordtogo.utils.ZoomView
+    <com.lyricat.crosswordtogo.utils.ZoomView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/zoomview"
         android:layout_width="fill_parent"
@@ -28,7 +28,7 @@
             android:verticalSpacing="1dp"
              >
         </GridView>
-    </com.example.crosswordtogo.utils.ZoomView>
+    </com.lyricat.crosswordtogo.utils.ZoomView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -71,6 +71,14 @@
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@id/across_down_spinner"
             android:text="Write" />
+        
+        <Button
+            android:id="@+id/json_button"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/answer_button"
+            android:text="JSON" />
 "
     </RelativeLayout>
 

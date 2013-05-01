@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crosswordtogo"
+    package="com.lyricat.crosswordtogo"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,12 +14,9 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
         
-        <provider android:name="com.example.crosswordtogo.logic.CrosswordProvider"
-            android:authorities="com.example.crosswordtogo.providers.CrosswordProvider" >
-        </provider>
 
         <activity
-            android:name="com.example.crosswordtogo.screens.menu.MenuActivity"
+            android:name="com.lyricat.crosswordtogo.screens.menu.MenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,25 +25,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.crosswordtogo.screens.OpenCrosswordActivity"
+            android:name="com.lyricat.crosswordtogo.screens.OpenCrosswordActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.crosswordtogo.screens.AppOptionsActivity"
+            android:name="com.lyricat.crosswordtogo.screens.AppOptionsActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-    		android:name="com.example.crosswordtogo.screens.TemplateChooserActivity"
+    		android:name="com.lyricat.crosswordtogo.screens.TemplateChooserActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-    		android:name="com.example.crosswordtogo.screens.BlockChooserActivity"
-            android:configChanges="orientation"
+    		android:name="com.lyricat.crosswordtogo.screens.BlockChooserActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
         <activity
-			android:name="com.example.crosswordtogo.screens.EditCrosswordActivity"
-            android:configChanges="orientation"
+			android:name="com.lyricat.crosswordtogo.screens.EditCrosswordActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name" >
         </activity>
     </application>
