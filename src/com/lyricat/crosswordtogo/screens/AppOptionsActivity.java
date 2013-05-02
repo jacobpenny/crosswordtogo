@@ -1,10 +1,10 @@
 package com.lyricat.crosswordtogo.screens;
 
+import com.lyricat.crosswordtogo.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-
-import com.lyricat.crosswordtogo.R;
 
 public class AppOptionsActivity extends Activity {
 	

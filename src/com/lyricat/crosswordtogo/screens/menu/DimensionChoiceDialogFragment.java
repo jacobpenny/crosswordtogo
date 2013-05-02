@@ -68,6 +68,7 @@ public class DimensionChoiceDialogFragment extends DialogFragment {
 			}
 		})
 		.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int id) {
 				DimensionChoiceDialogFragment.this.getDialog().cancel();
 			}

@@ -23,6 +23,7 @@ public class MenuActivity extends Activity {
 		
 		findViewById(R.id.new_crossword).setOnClickListener(
 				new OnClickListener() {
+					@Override
 					public void onClick(View v) {
 						// Create new fragment and transaction
 						Fragment newCrosswordFragment = new NewCrosswordDialogFragment();
@@ -45,6 +46,7 @@ public class MenuActivity extends Activity {
 
 		findViewById(R.id.open_crossword).setOnClickListener(
 				new OnClickListener() {
+					@Override
 					public void onClick(View v) {
 						Intent i = new Intent(MenuActivity.this, OpenCrosswordActivity.class);
 						startActivity(i);
@@ -53,6 +55,7 @@ public class MenuActivity extends Activity {
 		
 		findViewById(R.id.app_options).setOnClickListener(
 				new OnClickListener() {
+					@Override
 					public void onClick(View v) {
 						Intent i = new Intent(MenuActivity.this, AppOptionsActivity.class);
 						startActivity(i);

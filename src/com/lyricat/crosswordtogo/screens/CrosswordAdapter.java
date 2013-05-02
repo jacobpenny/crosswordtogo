@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.lyricat.crosswordtogo.R;
@@ -54,8 +53,8 @@ public class CrosswordAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 
-		Square currentSquare = (Square) crossword_.getSquareAt(position);
-		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+		Square currentSquare = crossword_.getSquareAt(position);
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
 		
 		if (currentSquare.isBlock()) {
 			LinearLayout blockLayout = (LinearLayout) LayoutInflater.from(context_).inflate(R.layout.cw_block, null); // set to parent maybe

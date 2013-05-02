@@ -58,6 +58,7 @@ public class Crossword {
 	
 	public void applyStringToDownWord(int number, String s) throws Exception {
 		// Confirm that string is correct length
+		int test = wordNumToSquareListDown_.get(number).size();
 		if (wordNumToSquareListDown_.get(number).size() != s.length()) { 
 			throw new Exception("wrong length"); 
 		}
@@ -184,7 +185,7 @@ public class Crossword {
 					// There exists a blank square above of the current square.
 					// They both belong to the same down word.
 					int currentSquareIndex = rowIndex * numCols_ + colIndex;
-					int prevSquareIndex = currentSquareIndex - 1;
+					int prevSquareIndex = currentSquareIndex - numCols_;
 					
 					// Iterate over wordNumToSquareListAcross_ to find the word number of prev square
 					for (Map.Entry<Integer, List<Integer>> entry : wordNumToSquareListDown_.entrySet()) {

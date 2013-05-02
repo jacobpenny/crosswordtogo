@@ -15,10 +15,11 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
 
+import com.google.gson.Gson;
 import com.lyricat.crosswordtogo.R;
 import com.lyricat.crosswordtogo.model.Crossword;
 import com.lyricat.crosswordtogo.utils.AppConstants;
-import com.google.gson.Gson;
+import com.lyricat.crosswordtogo.utils.LogUtil;
 
 public class EditCrosswordActivity extends Activity {
 	
@@ -81,6 +82,7 @@ public class EditCrosswordActivity extends Activity {
 		writeButton_ = (Button) findViewById(R.id.answer_button);
 
 		writeButton_.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				// Perform action on click
 				String inputedText = userWordInput_.getText().toString();
@@ -113,9 +115,10 @@ public class EditCrosswordActivity extends Activity {
 		Button jsonButton = (Button) findViewById(R.id.json_button);
 
 		jsonButton.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				Gson gson = new Gson();
-				Log.i("JSON", gson.toJson(crossword_));
+				LogUtil.splitAndLog("JSON", gson.toJson(crossword_));
 				
 			}
 		});

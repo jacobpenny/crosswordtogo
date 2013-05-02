@@ -15,8 +15,14 @@
         <item>23</item>
         <item>25</item>
     </string-array>
+    
+    <string-array name="template_file_names">
+        <item>american_15_15_a.json</item>
+    </string-array>
+    
     <string-array name="templates">
         <item>American 15x15 - A</item>
     </string-array>
+    
 
 </resources>

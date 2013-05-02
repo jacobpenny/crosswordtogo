@@ -1,33 +1,38 @@
 package com.lyricat.crosswordtogo.screens;
 
-import java.util.List;
+import java.io.InputStream;
+
+import com.google.gson.Gson;
+import com.lyricat.crosswordtogo.R;
+import com.lyricat.crosswordtogo.utils.AppConstants;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.lyricat.crosswordtogo.R;
 
 
 public class TemplateChooserActivity extends FragmentActivity {
 	static final int NUM_ITEMS = 1;
 	static int[] thumbnails_ = new int[NUM_ITEMS];
 	static String[] templateArray_;
+	static String[] templateFileNameArray_;
 	TemplatePagerAdapter mAdapter;
 
 	ViewPager mPager;
@@ -41,6 +46,7 @@ public class TemplateChooserActivity extends FragmentActivity {
 
 		thumbnails_[0] = R.drawable.american_15_15_a;
 		
+		templateFileNameArray_ = getResources().getStringArray(R.array.template_file_names);
 		
 		mAdapter = new TemplatePagerAdapter(getSupportFragmentManager());
 
@@ -50,12 +56,14 @@ public class TemplateChooserActivity extends FragmentActivity {
 		// Watch for button clicks.
 		Button button = (Button)findViewById(R.id.goto_first);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				mPager.setCurrentItem(0);
 			}
 		});
 		button = (Button)findViewById(R.id.goto_last);
 		button.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				mPager.setCurrentItem(NUM_ITEMS-1);
 			}
@@ -127,6 +135,45 @@ public class TemplateChooserActivity extends FragmentActivity {
 			
 			ImageView iv = (ImageView)v.findViewById(R.id.thumbnail);
 			iv.setImageResource(thumbnails_[mNum]);
+			iv.setOnClickListener(new OnClickListener() {
+			    @Override
+			    public void onClick(View v) {
+			    	AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+					alert.setTitle("Name your new crossword");
+					final EditText input = new EditText(getActivity());
+					alert.setView(input);
+
+					alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int whichButton) {
+							String name = input.getEditableText().toString();
+							//commitCrossword(name);
+							Intent i = new Intent(getActivity(), EditCrosswordActivity.class);
+							i.putExtra(AppConstants.CROSSWORD_NAME_EXTRA, name);
+							
+							//String content = new Scanner(new File("filename")).useDelimiter("\\Z").next();							
+							
+							
+							 
+							
+							//i.putExtra(AppConstants.CROSSWORD_JSON, crosswordJson);
+							
+							getActivity().startActivity(i);
+							getActivity().finish();
+						}
+					});
+					alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int whichButton) {
+							dialog.cancel();
+						}
+					}); 
+					AlertDialog alertDialog = alert.create();
+					alertDialog.show(); 
+			    	
+			    }
+			});
+			
 			return v;
 
 		}

@@ -10,18 +10,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.lyricat.crosswordtogo.R;
 import com.lyricat.crosswordtogo.utils.AppConstants;
-import com.google.gson.Gson;
 
 public class OpenCrosswordActivity extends ListActivity {
 
 	ArrayList<String> cwNames_;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -43,7 +42,7 @@ public class OpenCrosswordActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         String selectedName = cwNames_.get(position);
         
-        Intent i = new Intent((Activity) OpenCrosswordActivity.this, EditCrosswordActivity.class);
+        Intent i = new Intent(OpenCrosswordActivity.this, EditCrosswordActivity.class);
 		i.putExtra(AppConstants.CROSSWORD_NAME_EXTRA, selectedName);
 
 		((Activity) OpenCrosswordActivity.this).startActivity(i);

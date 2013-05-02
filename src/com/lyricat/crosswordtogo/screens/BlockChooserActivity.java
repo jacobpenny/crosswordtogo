@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,11 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.google.gson.Gson;
 import com.lyricat.crosswordtogo.R;
 import com.lyricat.crosswordtogo.model.Crossword;
 import com.lyricat.crosswordtogo.model.Square;
 import com.lyricat.crosswordtogo.utils.AppConstants;
-import com.google.gson.Gson;
 
 public class BlockChooserActivity extends Activity {
 
@@ -51,6 +50,7 @@ public class BlockChooserActivity extends Activity {
 		cwView_.setAdapter(crosswordAdapter_);
 
 		cwView_.setOnItemClickListener(new OnItemClickListener() {
+			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Square sq = crossword_.getSquareAt(position);
 				sq.toggleBlockness();
@@ -60,6 +60,7 @@ public class BlockChooserActivity extends Activity {
 
 		Button doneButton = (Button) findViewById(R.id.done_button);
 		doneButton.setOnClickListener( new OnClickListener() {
+			@Override
 			public void onClick(View v) {    
 				AlertDialog.Builder alert = new AlertDialog.Builder(context_);
 				alert.setTitle("Name your new crossword");
@@ -67,10 +68,11 @@ public class BlockChooserActivity extends Activity {
 				alert.setView(input);
 
 				alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						String name = input.getEditableText().toString();
 						//commitCrossword(name);
-						Intent i = new Intent((Activity) context_, EditCrosswordActivity.class);
+						Intent i = new Intent(context_, EditCrosswordActivity.class);
 						i.putExtra(AppConstants.CROSSWORD_NAME_EXTRA, name);
 						Gson gson = new Gson();
 						
@@ -84,6 +86,7 @@ public class BlockChooserActivity extends Activity {
 					}
 				});
 				alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
 						dialog.cancel();
 					}

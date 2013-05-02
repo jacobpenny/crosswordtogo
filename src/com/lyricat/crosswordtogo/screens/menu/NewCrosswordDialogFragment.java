@@ -19,6 +19,7 @@ public class NewCrosswordDialogFragment extends DialogFragment {
 		// Use the Builder class for convenient dialog construction
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setItems(R.array.new_crossword_dialog_array, new DialogInterface.OnClickListener() {
+			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				switch (which) {
 				case 0 : { 
