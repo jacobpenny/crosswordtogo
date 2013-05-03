@@ -8,11 +8,13 @@ import java.util.Map;
 
 public class Crossword {
 
-	String name_;
-	private Square[] squares_;
+	//String name_;
+	
 	private int numRows_;
 	private int numCols_;
+	private Square[] squares_;
 	boolean blocksLocked_;
+	boolean squaresGenerated_;
 	private int maxWordNumber_;
 	
 	// test imp
@@ -24,10 +26,13 @@ public class Crossword {
 	private Crossword(int numRows, int numCols) {
 		numRows_ = numRows;
 		numCols_ = numCols;
+		
 		squares_ = new Square[numRows_ * numCols_];
 		for (int i = 0; i < squares_.length; ++i) {
 			squares_[i] = new Square();
 		}
+	
+		squaresGenerated_ = false;
 		wordNumToUserTextAcross_ = new HashMap<Integer, String>();
 		wordNumToUserTextDown_ = new HashMap<Integer, String>();
 		wordNumToSquareListAcross_ = new HashMap<Integer, List<Integer>>();
@@ -126,6 +131,8 @@ public class Crossword {
 		return squares_[index];
 	}
 
+	public boolean squaresGenerated() { return squaresGenerated_; }
+	
 	public void generateSquareLists() {
 		assert blocksLocked_;
 		int counter = 1;
@@ -204,7 +211,7 @@ public class Crossword {
 		}
 
 		maxWordNumber_ = counter - 1;
-
+		squaresGenerated_ = true;
 	}
 
 }

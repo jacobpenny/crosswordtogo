@@ -42,7 +42,7 @@ public class LogUtil {
      * @return  ArrayList<String>   
      */
     public static ArrayList<String> splitString(String text) {
-        return splitString(text, 80);
+        return splitString(text, 900);
     }
 
     /**

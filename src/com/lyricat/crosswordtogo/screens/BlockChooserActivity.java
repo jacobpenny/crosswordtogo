@@ -27,8 +27,8 @@ public class BlockChooserActivity extends Activity {
 
 	private int numRows_;
 	private int numCols_;
-	private static CrosswordAdapter crosswordAdapter_;
-	private static Crossword crossword_;
+	private CrosswordAdapter crosswordAdapter_;
+	private Crossword crossword_;
 	final Context context_ = this;
 
 
