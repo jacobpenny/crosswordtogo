@@ -72,14 +72,6 @@
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@id/across_down_toggle"
             android:text="Write" />
-
-        <Button
-            android:id="@+id/json_button"
-            android:layout_width="66dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/answer_button"
-            android:text="JSON" />
         
     </RelativeLayout>
 

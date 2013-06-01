@@ -3,6 +3,7 @@ package com.lyricat.crosswordtogo.screens;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,10 +42,10 @@ public class EditCrosswordActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_edit_crossword);
 		crosswordName_ = getIntent().getStringExtra(AppConstants.CROSSWORD_NAME_EXTRA);
-
 
 		Gson gson = new Gson();
 		SharedPreferences settings = getSharedPreferences(AppConstants.CROSSWORDS_STORAGE, 0);
@@ -111,16 +112,6 @@ public class EditCrosswordActivity extends Activity {
 						// TODO: Toast the error
 					}
 				}
-			}
-		});
-
-		// Set up the JSON button (for development only)		
-		Button jsonButton = (Button) findViewById(R.id.json_button);
-		jsonButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Gson gson = new Gson();
-				LogUtil.splitAndLog("JSON", gson.toJson(crossword_));
 			}
 		});
 

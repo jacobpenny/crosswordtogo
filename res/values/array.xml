@@ -4,6 +4,7 @@
     <string-array name="new_crossword_dialog_array">
         <item>Choose from templates</item>
         <item>Create from scratch</item>
+        <item>Automatically detect</item>
     </string-array>
     <string-array name="dialog_dimensions_choices">
         <item>11</item>

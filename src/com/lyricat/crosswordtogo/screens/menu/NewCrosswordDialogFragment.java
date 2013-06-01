@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.lyricat.crosswordtogo.R;
+import com.lyricat.crosswordtogo.screens.DetectorActivity;
 import com.lyricat.crosswordtogo.screens.TemplateChooserActivity;
 
 public class NewCrosswordDialogFragment extends DialogFragment {
@@ -29,9 +30,6 @@ public class NewCrosswordDialogFragment extends DialogFragment {
 					}
 
 				case 1 : { 
-					// Create from scratch selected
-					
-					// Create new fragment and transaction
 					Fragment newDimensionsFragment = new DimensionChoiceDialogFragment();
 					FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -43,10 +41,15 @@ public class NewCrosswordDialogFragment extends DialogFragment {
 
 					// Commit the transaction
 					transaction.commit();
-
+					break;
+					}
+				
+				case 2 : { 
+					Intent i = new Intent(getActivity(), DetectorActivity.class);
+					getActivity().startActivity(i);
+					break; 
 					}
 				}
-
 			}});
 
 
